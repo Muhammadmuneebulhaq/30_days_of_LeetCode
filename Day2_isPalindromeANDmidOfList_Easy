@@ -1,0 +1,70 @@
+/// is palindrome
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int sizeOf(ListNode* head){
+        ListNode* temp = head;
+        int size=0;
+        while(temp){
+            size++;
+            temp = temp->next;
+        }
+        delete temp;
+        return size;
+    }
+    bool isPalindrome(ListNode* head) {
+        int size = sizeOf(head);
+        int* headArr = new int[size];
+        ListNode* temp = head;
+        for(int i=0;i<size;i++){
+            headArr[i] = temp->val;
+            temp = temp->next;
+        }
+        for(int i=size-1,j=0;i>=size/2;i--,j++){
+            if(headArr[j] != headArr[i])
+                return false;
+        }
+        return true;
+    }
+};
+
+
+/////// finding middle of linked list
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* temp = head;
+        int size=0;
+        while(temp){
+            size++;
+            temp = temp->next;
+        }
+        temp = head;
+        for(int i=0;i<size/2;i++){
+            temp = temp->next;
+        }
+        return temp;
+    }
+};
