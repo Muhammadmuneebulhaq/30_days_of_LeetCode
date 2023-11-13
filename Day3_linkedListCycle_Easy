@@ -1,0 +1,29 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+
+// Thanks to Junaid zeb, Sameed ahmed and Ibrahim Awais for helping me out in this by introducing me to vectors 
+
+ #include <vector>
+ using namespace std;
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        vector<ListNode*> myVector;
+        ListNode*temp1 = head;
+        while(temp1){
+            for(ListNode* x : myVector){
+                if(x == temp1)
+                    return true;
+            }
+            myVector.push_back(temp1);
+            temp1 = temp1->next;
+        }
+        return false;
+    }
+};
