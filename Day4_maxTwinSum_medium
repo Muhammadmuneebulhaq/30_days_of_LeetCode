@@ -1,0 +1,38 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    int sizeOf(ListNode* head){
+        ListNode* temp = head;
+        int size=0;
+        while(temp){
+            size++;
+            temp = temp->next;
+        }
+        return size;
+    }
+    int pairSum(ListNode* head) {
+        int size = sizeOf(head);
+        int max = 0;
+        ListNode* temp= head;
+        recursiveFunct(head, temp, max);
+        return max;
+    }
+    void recursiveFunct(ListNode* &head, ListNode* temp, int &max){
+        if(temp){
+            recursiveFunct(head, temp->next, max);
+            int sum = head->val + temp->val;
+            if(sum > max)
+                max = sum;
+            head = head ->next;
+        }
+    }
+};
