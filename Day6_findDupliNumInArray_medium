@@ -1,0 +1,47 @@
+class Solution {
+public:
+    
+class treeNode{
+    public:
+    int val;
+    treeNode * left, *right;
+    treeNode(int x =-1){
+        val =x;left = right = NULL;
+    }
+};
+class myTree{
+    public:
+    treeNode* root;
+    myTree(){root = NULL;}
+    
+};
+    int findDuplicate(vector<int>& nums) {
+        int size = nums.size();
+        myTree numsTree;
+        treeNode * x = new treeNode(nums[0]);
+        numsTree.root = x;
+        treeNode * temp = numsTree.root; 
+        for(int i =1; i<size;i++){
+            while(true){    
+                if(nums[i]<temp->val)
+                    if(temp->left)
+                        temp = temp->left;
+                    else{
+                        temp->left = new treeNode(nums[i]);
+                        break;
+                    }
+                else if(nums[i]> temp->val)
+                    if(temp->right)
+                        temp = temp->right;
+                    else{
+                        temp->right = new treeNode(nums[i]);
+                        break;
+                    }
+                else 
+                    return nums[i];
+            }
+            temp = numsTree.root;
+        }
+        return -1;
+    }
+};
