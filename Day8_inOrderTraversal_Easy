@@ -1,0 +1,14 @@
+class Solution {
+public:
+    void inOrderRecursive(TreeNode* Root, vector<int>&x){
+        if(!Root)return;
+        inOrderRecursive(Root->left, x);
+        x.push_back(Root->val);
+        inOrderRecursive(Root->right, x);
+    }
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> inOrdered;
+        inOrderRecursive(root, inOrdered);
+        return inOrdered;
+    }
+};
